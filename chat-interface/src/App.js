@@ -97,6 +97,23 @@ function App() {
     setMessages([]);
   };
 
+  // 添加自定义图片组件
+  const customComponents = {
+    img: ({ node, ...props }) => (
+      <img
+        {...props}
+        style={{
+          maxWidth: '100%',
+          maxHeight: '400px',
+          height: 'auto',
+          borderRadius: '8px',
+          margin: '10px 0'
+        }}
+        alt={props.alt || '图片'}
+      />
+    )
+  };
+
   return (
     <div className="chat-container">
       <div className="messages">
@@ -117,7 +134,9 @@ function App() {
               />
             ) : (
               <div className="content">
-                <ReactMarkdown>{msg.content}</ReactMarkdown>
+                <ReactMarkdown components={customComponents}>
+                  {msg.content}
+                </ReactMarkdown>
               </div>
             )}
           </div>
