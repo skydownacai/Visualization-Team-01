@@ -24,7 +24,7 @@ pip install -r requirements.txt
 
 运行 wb_backend.py 就可以启动后端
 
-![image-20250602134038156](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20250602134038156.png)
+![image-20250602134038156](pics\1.png)
 
 显示 WebSocket服务器启动在端口3001... 的字样就表明成功了
 
@@ -34,13 +34,13 @@ pip install -r requirements.txt
 
 如果提示
 
-![image-20250602134136565](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20250602134136565.png)
+![image-20250602134136565](pics\2.png)
 
 并且浏览器能打开 http://localhost:3000/ 就表明启动成功
 
 同时请按F12（谷歌浏览器，其他浏览器可能不一样）打开浏览器控制台，如果最后一条消息提示  WebSocket连接已建立 表明和后端成功连接
 
-![image-20250602134206538](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20250602134206538.png)
+![image-20250602134206538](pics\3.png)
 
 ### 4. 工具编辑和增加
 
