@@ -197,7 +197,7 @@ tools = [
 ]
 if __name__ == "__main__":
     messages = [
-        {"role": "user", "content": "你好，我想知道2023年8月31日到2024年1月25日共148天的学习行为数据。"}
+        {"role": "user", "content": "你好，请对知识点t5V9e进行难度析"},
     ]
     get_model_response(messages,tools,debug=True)
 
