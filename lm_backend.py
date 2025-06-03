@@ -181,6 +181,19 @@ tools = [
             }
         }
     },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_hard_title",
+            "description": "获取学习行为数据中[知识点]各题目的难度分析，返回[知识点]掌握度散点图，各题目正确率柱状图，高分学生（知识掌握度大于0.7）的平均正确率柱状图以及箱线图链接以及难度分析结论（是否有哪道题难度过高）。",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "knowledge": {"type": "string", "description": "需要分析的知识点,共8个，分别是r8S3g,t5V9e,m3D1v,y9W5d,k4W1c,s8Y2f,g7R2j,b3C9s,多个知识点用英文的逗号,分开.如果为空，则默认使用所有知识点"}
+                }
+            }
+        }
+    },
 ]
 if __name__ == "__main__":
     messages = [
