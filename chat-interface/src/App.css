@@ -1,31 +1,141 @@
+/* 全局样式重置 */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  height: 100%;
+}
+
+/* 添加应用包装器 */
+.app-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 蜘蛛网canvas样式 */
+.spider-web-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
 .chat-container {
-  max-width: 800px;
+  max-width: 900px;
+  width: 90%;
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+}
+
+/* 添加标题区域样式 */
+.header-section {
+  text-align: center;
+  margin-bottom: 15px;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  color: white;
+  flex-shrink: 0;
+}
+
+.main-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+}
+
+.sub-title {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+  opacity: 0.9;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 1.5rem;
+  }
+  
+  .sub-title {
+    font-size: 0.9rem;
+  }
+  
+  .header-section {
+    padding: 12px 15px;
+    margin-bottom: 10px;
+  }
+  
+  .chat-container {
+    padding: 8px;
+  }
 }
 
 .messages {
-  height: 82vh;
+  width: 100%;
+  flex: 1;
   overflow-y: auto;
-  border: 1px solid #ccc;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .message {
+  max-width: 100%;
   margin-bottom: 10px;
   padding: 8px;
   border-radius: 4px;
 }
 
 .message.user {
-  background-color: #e3f2fd;
+  background-color: rgba(227, 242, 253, 0.9);
+  backdrop-filter: blur(5px);
   margin-left: 20%;
+  border: 1px solid rgba(102, 126, 234, 0.2);
 }
 
 .message.assistant {
-  background-color: #f5f5f5;
+  background-color: rgba(245, 245, 245, 0.9);
+  backdrop-filter: blur(5px);
   margin-right: 20%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .loading {
@@ -33,34 +143,144 @@
   font-style: italic;
 }
 
+/* 报告生成加载动画样式 */
+.report-generating {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  padding: 20px;
+}
+
+.report-loading-animation {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 25px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 25px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.report-loading-animation span {
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+}
+
+/* 添加淡入动画 */
+.report-generating {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .input-form {
+  width: 100%;
   display: flex;
   gap: 10px;
-  padding: 20px;
-  background-color: #f5f5f5;
+  padding: 15px;
+  background: rgba(245, 245, 245, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .input-form input {
   flex: 1;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid rgba(221, 221, 221, 0.6);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(5px);
+  border-radius: 6px;
   min-width: 300px;
+}
+
+.input-form input:focus {
+  outline: none;
+  border-color: rgba(102, 126, 234, 0.8);
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+/* 添加textarea专用样式 */
+.input-form .input-textarea {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid rgba(221, 221, 221, 0.6);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(5px);
+  border-radius: 6px;
+  min-width: 300px;
+  min-height: 40px;
+  max-height: 200px;
+  resize: none;
+  font-family: inherit;
+  line-height: 1.4;
+  overflow-y: hidden;
+  transition: height 0.2s ease;
+}
+
+.input-form .input-textarea:focus {
+  outline: none;
+  border-color: rgba(102, 126, 234, 0.8);
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+.input-form .input-textarea::placeholder {
+  color: #999;
+  font-style: italic;
 }
 
 .input-form button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.9) 0%, rgba(102, 126, 234, 0.9) 100%);
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.input-form button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
 }
 
 .input-form button:disabled {
-  background-color: #cccccc;
+  background: rgba(204, 204, 204, 0.8);
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .message-header {
@@ -78,4 +298,195 @@
 
 .role-indicator {
   font-weight: bold;
+}
+
+/* 为不同角色添加独特的样式 */
+.message.assistant.role-default {
+  background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+  border-left: 4px solid #4a90e2;
+}
+
+.message.assistant.role-advisor {
+  background: linear-gradient(135deg, #fff5f0 0%, #ffe8d9 100%);
+  border-left: 4px solid #ff6b35;
+}
+
+.message.assistant.role-creative {
+  background: linear-gradient(135deg, #f0fff4 0%, #e8f5e8 100%);
+  border-left: 4px solid #4caf50;
+}
+
+.message.assistant.role-technical {
+  background: linear-gradient(135deg, #fef7ff 0%, #f3e5f5 100%);
+  border-left: 4px solid #9c27b0;
+}
+
+.message.assistant.role-analyst {
+  background: linear-gradient(135deg, #fffbf0 0%, #fff2d9 100%);
+  border-left: 4px solid #ff9800;
+}
+
+/* 为角色指示器添加对应的颜色 */
+.message.assistant.role-default .role-indicator {
+  color: #4a90e2;
+  font-weight: 600;
+}
+
+.message.assistant.role-advisor .role-indicator {
+  color: #ff6b35;
+  font-weight: 600;
+}
+
+.message.assistant.role-creative .role-indicator {
+  color: #4caf50;
+  font-weight: 600;
+}
+
+.message.assistant.role-technical .role-indicator {
+  color: #9c27b0;
+  font-weight: 600;
+}
+
+.message.assistant.role-analyst .role-indicator {
+  color: #ff9800;
+  font-weight: 600;
+}
+
+/* 为头像添加角色特定的边框效果 */
+.message.assistant.role-default .avatar {
+  border: 3px solid #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.message.assistant.role-advisor .avatar {
+  border: 3px solid #ff6b35;
+  box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.2);
+}
+
+.message.assistant.role-creative .avatar {
+  border: 3px solid #4caf50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.message.assistant.role-technical .avatar {
+  border: 3px solid #9c27b0;
+  box-shadow: 0 0 0 2px rgba(156, 39, 176, 0.2);
+}
+
+.message.assistant.role-analyst .avatar {
+  border: 3px solid #ff9800;
+  box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.2);
+}
+
+/* 添加悬停效果 */
+.message.assistant:hover {
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
 } 
+.message.user.role-user {
+  border-left: 4px solid #6366f1; /* 紫色左边框 */
+}
+
+.message.user.role-user .role-indicator {
+  color: #6366f1; /* 紫色角色名称 */
+  font-weight: 600;
+}
+
+.message.user.role-user .avatar {
+  border: 3px solid #6366f1; /* 紫色头像边框 */
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+  transition: all 0.3s ease;
+}
+
+.message.user.role-user:hover .avatar {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+}
+
+.message.user.role-user:hover {
+  background-color: rgba(99, 102, 241, 0.05);
+  transform: translateX(5px);
+  transition: all 0.3s ease;
+}
+
+/* 表格样式优化 */
+.table-container {
+  overflow-x: auto;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  min-width: 600px;
+}
+
+.table-container th,
+.table-container td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.table-container th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.table-container tr:hover {
+  background-color: #f5f5f5;
+}
+
+.table-container tr:last-child td {
+  border-bottom: none;
+}
+
+/* 滚动条美化 */
+.messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.6) 100%);
+  border-radius: 4px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%);
+}
+
+/* 下载状态提示样式 */
+.download-status {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+  z-index: 1000;
+  font-weight: 500;
+  animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
